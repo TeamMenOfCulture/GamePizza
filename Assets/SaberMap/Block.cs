@@ -5,7 +5,7 @@ public class Block : MonoBehaviour
 {
     public float speed = 5f;
     public Material crossSectionMaterial; // Material for the cross-section of the sliced hulls
-
+    public GameObject CubeSelf;
     void Update()
     {
         // Move the block
@@ -31,7 +31,7 @@ public class Block : MonoBehaviour
         // Visualize the slicing plane
         Debug.DrawRay(saber.position, saber.up * 5, Color.red, 2.0f);
 
-        SlicedHull slicedHull = gameObject.Slice(plane, crossSectionMaterial);
+        SlicedHull slicedHull = CubeSelf.Slice(plane, crossSectionMaterial);
 
         if (slicedHull != null)
         {
