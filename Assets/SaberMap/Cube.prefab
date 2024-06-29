@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3511103259153024468
 MeshFilter:
@@ -120,3 +120,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   crossSectionMaterial: {fileID: 2100000, guid: cf0e99229f1c72944999686244cafba6, type: 2}
+  explosionPrefab: {fileID: 2406183867454843911, guid: 8522aacf5a85af043af81a00d18293fa, type: 3}
