@@ -12,7 +12,7 @@ public class HomeScreen : MonoBehaviour
     public Material materialA;
     public Material materialB;
     public TextMesh cntdwntxt; // Use TextMeshPro for 3D text
-    
+
     private Renderer startGameRenderer;
     private Renderer exitRenderer;
     private Coroutine countdownCoroutine;
@@ -33,8 +33,9 @@ public class HomeScreen : MonoBehaviour
 
     void Update()
     {
-        // Get the ray from the camera to the screen middle
-        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+        // Use the center of the VR camera's viewport for raycasting
+        Camera vrCamera = Camera.main;
+        Ray ray = vrCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
 
         // RaycastHit variable to store information about the hit
         RaycastHit hit;

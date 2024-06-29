@@ -7,10 +7,14 @@ public class Block : MonoBehaviour
     public float speed = 5f;
     public Material crossSectionMaterial;
     public GameObject explosionPrefab; // Reference to the explosion prefab
+    public GameObject plusOnePrefab; // Reference to the PlusOne particle system
+    public GameObject plusFivePrefab; // Reference to the PlusFive particle system
+    public GameObject plusOneSoundPrefab; // Reference to the PlusOne sound effect prefab
+    public GameObject plusFiveSoundPrefab; // Reference to the PlusFive sound effect prefab
+    public Material missMaterial; // Material for missed blocks
 
     private TextMesh scoreTextMesh;
     private TextMesh missCountTextMesh;
-    public Material missMaterial; // Material for missed blocks
 
     private void Start()
     {
@@ -79,6 +83,10 @@ public class Block : MonoBehaviour
             AddComponentsToSlice(upperHull);
             AddComponentsToSlice(lowerHull);
 
+            // Instantiate PlusFive particle system and sound
+            TriggerParticleSystem(plusFivePrefab);
+            PlaySound(plusFiveSoundPrefab);
+
             // Update score
             UpdateScore(5);
 
@@ -88,6 +96,11 @@ public class Block : MonoBehaviour
         {
             Debug.Log("Slicing Failed");
             TriggerExplosion();
+
+            // Instantiate PlusOne particle system and sound
+            TriggerParticleSystem(plusOnePrefab);
+            PlaySound(plusOneSoundPrefab);
+
             UpdateScore(1);
             Destroy(gameObject);
         }
@@ -121,11 +134,43 @@ public class Block : MonoBehaviour
         }
     }
 
+    private void TriggerParticleSystem(GameObject particlePrefab)
+    {
+        if (particlePrefab != null)
+        {
+            GameObject particleInstance = Instantiate(particlePrefab, transform.position, transform.rotation);
+
+            ParticleSystem ps = particleInstance.GetComponent<ParticleSystem>();
+            if (ps != null)
+            {
+                ps.Play();
+            }
+
+            Destroy(particleInstance, 2f);
+        }
+    }
+
+    private void PlaySound(GameObject soundPrefab)
+    {
+        if (soundPrefab != null)
+        {
+            GameObject soundInstance = Instantiate(soundPrefab, transform.position, transform.rotation);
+
+            AudioSource audioSource = soundInstance.GetComponent<AudioSource>();
+            if (audioSource != null)
+            {
+                audioSource.Play();
+            }
+
+            Destroy(soundInstance, 2f);
+        }
+    }
+
     private void MissBlock()
     {
         int missCount = PlayerPrefs.GetInt("MissCount") + 1;
         PlayerPrefs.SetInt("MissCount", missCount);
-        Debug.Log("Miss : " + missCount);
+        Debug.Log("Miss: " + missCount);
 
         if (missCount >= 5)
         {
@@ -152,9 +197,10 @@ public class Block : MonoBehaviour
 
         if (missCountTextMesh != null)
         {
-            missCountTextMesh.text = "Miss : " + PlayerPrefs.GetInt("MissCount");
+            missCountTextMesh.text = "Miss: " + PlayerPrefs.GetInt("MissCount");
         }
     }
+
     private void DisableBlock()
     {
         BoxCollider boxCollider = GetComponent<BoxCollider>();

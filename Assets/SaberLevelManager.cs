@@ -11,7 +11,7 @@ public class SaberLevelManager : MonoBehaviour
     void Start()
     {
 
-            PlayerPrefs.SetInt("SaberScore", -5);
+            PlayerPrefs.SetInt("SaberScore", 0);
         
             PlayerPrefs.SetInt("MissCount", 0);
         

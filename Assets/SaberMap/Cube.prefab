@@ -121,6 +121,8 @@ MonoBehaviour:
   speed: 4
   crossSectionMaterial: {fileID: 2100000, guid: cf0e99229f1c72944999686244cafba6, type: 2}
   explosionPrefab: {fileID: 2406183867454843911, guid: 8522aacf5a85af043af81a00d18293fa, type: 3}
-  sliceSound: {fileID: 8300000, guid: 65a892d8950262541acbf289bb4135ff, type: 3}
-  blastSound: {fileID: 8300000, guid: 0b63e9c4b4c44434ab28a8885825abed, type: 3}
+  plusOnePrefab: {fileID: 2687976475764775603, guid: 21457ad146f6c9347a102913121499f8, type: 3}
+  plusFivePrefab: {fileID: 9152176539040083538, guid: 79d3192b61d93aa42853977260347af1, type: 3}
+  plusOneSoundPrefab: {fileID: 3075409406510603071, guid: 49c4fcfc12604ef44a91fd0da1a12bd6, type: 3}
+  plusFiveSoundPrefab: {fileID: 1397058021968596078, guid: d6a7999e54e1b604cb32ffaa67fcc15d, type: 3}
   missMaterial: {fileID: 2100000, guid: 6dd0edcd049eb034699745afba8a0780, type: 2}
