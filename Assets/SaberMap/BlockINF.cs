@@ -2,7 +2,7 @@ using UnityEngine;
 using EzySlice;
 using UnityEngine.SceneManagement;
 
-public class Block : MonoBehaviour
+public class BlockINF : MonoBehaviour
 {
     public float speed = 5f;
     public Material crossSectionMaterial;
@@ -172,7 +172,7 @@ public class Block : MonoBehaviour
         PlayerPrefs.SetInt("MissCount", missCount);
         Debug.Log("Miss: " + missCount);
 
-        if (missCount >= 10)
+        if (missCount >= 9999)
         {
             Debug.Log("Game Over");
         }

@@ -7,9 +7,11 @@ public class MainMenuUI : MonoBehaviour
     public GameObject startGameButton;
     public GameObject exitButton;
     public GameObject newSceneButton; // New button for navigating to another scene
+    public GameObject newSceneButton1; // New button for navigating to another scene
     public int button1Index;
     public int button2Index;
     public int newSceneIndex; // Index of the new scene
+    public int newSceneIndex1; // Index of the new scene
 
     public Material materialA;
     public Material materialB;
@@ -18,6 +20,7 @@ public class MainMenuUI : MonoBehaviour
     private Renderer startGameRenderer;
     private Renderer exitRenderer;
     private Renderer newSceneRenderer; // Renderer for the new button
+    private Renderer newSceneRenderer1; // Renderer for the new button
     private Coroutine countdownCoroutine;
 
     void Start()
@@ -26,11 +29,13 @@ public class MainMenuUI : MonoBehaviour
         startGameRenderer = startGameButton.GetComponent<Renderer>();
         exitRenderer = exitButton.GetComponent<Renderer>();
         newSceneRenderer = newSceneButton.GetComponent<Renderer>(); // Get renderer for the new button
+        newSceneRenderer1 = newSceneButton1.GetComponent<Renderer>(); // Get renderer for the new button
 
         // Set the initial materials
         startGameRenderer.material = materialA;
         exitRenderer.material = materialA;
         newSceneRenderer.material = materialA; // Set initial material for the new button
+        newSceneRenderer1.material = materialA; // Set initial material for the new button
 
         // Hide the countdown text initially
         cntdwntxt.gameObject.SetActive(false);
@@ -88,6 +93,16 @@ public class MainMenuUI : MonoBehaviour
                     countdownCoroutine = StartCoroutine(CountdownToAction(3, () => SceneManager.LoadScene(newSceneIndex)));
                 }
             }
+            else if (hit.collider.CompareTag("NewScene1"))
+            {
+                // Change material on hover
+                newSceneRenderer1.material = materialB;
+
+                if (countdownCoroutine == null)
+                {
+                    countdownCoroutine = StartCoroutine(CountdownToAction(3, () => SceneManager.LoadScene(newSceneIndex1)));
+                }
+            }
             else
             {
                 // Revert materials on hover end and stop countdown
@@ -127,6 +142,7 @@ public class MainMenuUI : MonoBehaviour
         startGameRenderer.material = materialA;
         exitRenderer.material = materialA;
         newSceneRenderer.material = materialA; // Reset material for the new button
+        newSceneRenderer1.material = materialA; // Reset material for the new button
         cntdwntxt.gameObject.SetActive(false);
     }
 }

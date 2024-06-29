@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class SaberLevelManager : MonoBehaviour
+public class SaberLevelManagerINF : MonoBehaviour
 {
     public int GameOverSceneIndex;
     // Start is called before the first frame update
@@ -19,7 +19,7 @@ public class SaberLevelManager : MonoBehaviour
     void Update()
     {
         int missCount = PlayerPrefs.GetInt("MissCount");
-        if (missCount >= 10)
+        if (missCount >= 9999)
         {
             GameOverScene();
         }
