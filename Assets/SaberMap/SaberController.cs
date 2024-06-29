@@ -2,16 +2,13 @@ using UnityEngine;
 
 public class SaberController : MonoBehaviour
 {
-    public Transform head;
-    public float distance = 2f;
+    public Transform head; // Reference to the VR head/camera
+    public float distance = 2f; // Distance from the head
 
     void Update()
     {
-        // Position the saber in front of the head
-        Vector3 forward = head.forward;
-        forward.y = 0; // Keep the saber horizontal
-        forward.Normalize();
-        transform.position = head.position + forward * distance;
+        Vector3 targetPosition = head.position + head.forward * distance;
+        //transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 10);
         transform.rotation = head.rotation;
     }
 }

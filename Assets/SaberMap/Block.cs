@@ -4,11 +4,10 @@ using EzySlice;
 public class Block : MonoBehaviour
 {
     public float speed = 5f;
-    public Material crossSectionMaterial; // Material for the cross-section of the sliced hulls
+    public Material crossSectionMaterial;
 
     void Update()
     {
-        // Move the block
         transform.Translate(Vector3.back * speed * Time.deltaTime);
     }
 
@@ -24,16 +23,14 @@ public class Block : MonoBehaviour
     private void Slice(Transform saber)
     {
         Debug.Log("Slicing Initiated");
-        
+
         // Ensure plane orientation matches the saber's slicing direction
         Vector3 planePosition = saber.position;
-        Vector3 planeNormal = saber.right; // Adjust this based on the saber's slicing direction
-        
-        // Log the plane details
-        Debug.Log("Plane Position: " + planePosition);
-        Debug.Log("Plane Normal: " + planeNormal);
-        
-        // Visualize the slicing plane
+        Vector3 planeNormal = saber.right; // Adjust if necessary
+
+        // Debug.Log("Plane Position: " + planePosition);
+        // Debug.Log("Plane Normal: " + planeNormal);
+
         Debug.DrawRay(planePosition, planeNormal * 5, Color.red, 2.0f);
 
         EzySlice.Plane plane = new EzySlice.Plane();
