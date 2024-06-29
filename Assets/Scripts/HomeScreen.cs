@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using System.Collections;
+using System.Collections; // Add this for TextMeshPro
 
 public class HomeScreen : MonoBehaviour
 {
@@ -9,7 +8,7 @@ public class HomeScreen : MonoBehaviour
     public GameObject exitButton;
     public Material materialA;
     public Material materialB;
-    public Text countdownText; // UI Text element to display the countdown
+    public TextMesh cntdwntxt; // Use TextMeshPro for 3D text
 
     private Renderer startGameRenderer;
     private Renderer exitRenderer;
@@ -26,7 +25,7 @@ public class HomeScreen : MonoBehaviour
         exitRenderer.material = materialA;
 
         // Hide the countdown text initially
-        countdownText.gameObject.SetActive(false);
+        cntdwntxt.gameObject.SetActive(false);
     }
 
     void Update()
@@ -75,17 +74,17 @@ public class HomeScreen : MonoBehaviour
 
     private IEnumerator CountdownToAction(float seconds, System.Action action)
     {
-        countdownText.gameObject.SetActive(true);
+        cntdwntxt.gameObject.SetActive(true);
 
         float counter = seconds;
         while (counter > 0)
         {
-            countdownText.text = counter.ToString("F1");
+            cntdwntxt.text = counter.ToString("F1");
             yield return new WaitForSeconds(0.1f);
             counter -= 0.1f;
         }
 
-        countdownText.gameObject.SetActive(false);
+        cntdwntxt.gameObject.SetActive(false);
         action.Invoke();
     }
 
@@ -98,6 +97,6 @@ public class HomeScreen : MonoBehaviour
         }
         startGameRenderer.material = materialA;
         exitRenderer.material = materialA;
-        countdownText.gameObject.SetActive(false);
+        cntdwntxt.gameObject.SetActive(false);
     }
 }

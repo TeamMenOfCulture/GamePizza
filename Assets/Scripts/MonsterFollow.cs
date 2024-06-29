@@ -26,9 +26,11 @@ public class MonsterFollow : MonoBehaviour
     private bool hasRoared = false;
     public float speedReccoveryTimeFactor = 0.1f;
 
+    public GameObject Blood;
 
     void Start()
     {
+        Blood.SetActive(false);
         originalMoveSpeed = moveSpeed;
         // SlowDownIntensity = 1f;
         // Find the player GameObject by tag
@@ -123,7 +125,8 @@ public class MonsterFollow : MonoBehaviour
             // Trigger killing animation
             monsterAnimator.SetTrigger("KillPlayer");
 
-            Invoke("GameOverB", 8f);
+            Invoke("ShowBlood", 6.7f);
+            Invoke("GameOverB", 9f);
         }
         else
         {
@@ -181,6 +184,10 @@ public class MonsterFollow : MonoBehaviour
     {
         // Load the next scene (you can replace this with the appropriate scene index or name)
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+    }
+    public void ShowBlood()
+    {
+        Blood.SetActive(true);
     }
     public void SlowDown(float monsterSlowdown)
     {

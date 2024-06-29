@@ -52,7 +52,7 @@ public class RunnerMovement : MonoBehaviour
         ApplyCustomGravity();
         currScore = transform.position.z + offsetScore;
 
-        if (transform.position.y < -3f)
+        if (transform.position.y < 0f)
         {
             PlayerPrefs.SetFloat(lastScoreKey, currScore);
             PlayerPrefs.Save();
