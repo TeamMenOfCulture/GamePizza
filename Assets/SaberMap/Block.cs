@@ -5,7 +5,7 @@ public class Block : MonoBehaviour
 {
     public float speed = 5f;
     public Material crossSectionMaterial; // Material for the cross-section of the sliced hulls
-    public GameObject CubeSelf;
+
     void Update()
     {
         // Move the block
@@ -23,15 +23,23 @@ public class Block : MonoBehaviour
 
     private void Slice(Transform saber)
     {
-        // Use EZY Slice framework to slice the block
         Debug.Log("Slicing Initiated");
-        EzySlice.Plane plane = new EzySlice.Plane();
-        plane.Compute(saber.position, saber.up);
-
+        
+        // Ensure plane orientation matches the saber's slicing direction
+        Vector3 planePosition = saber.position;
+        Vector3 planeNormal = saber.right; // Adjust this based on the saber's slicing direction
+        
+        // Log the plane details
+        Debug.Log("Plane Position: " + planePosition);
+        Debug.Log("Plane Normal: " + planeNormal);
+        
         // Visualize the slicing plane
-        Debug.DrawRay(saber.position, saber.up * 5, Color.red, 2.0f);
+        Debug.DrawRay(planePosition, planeNormal * 5, Color.red, 2.0f);
 
-        SlicedHull slicedHull = CubeSelf.Slice(plane, crossSectionMaterial);
+        EzySlice.Plane plane = new EzySlice.Plane();
+        plane.Compute(planePosition, planeNormal);
+
+        SlicedHull slicedHull = gameObject.Slice(plane, crossSectionMaterial);
 
         if (slicedHull != null)
         {
