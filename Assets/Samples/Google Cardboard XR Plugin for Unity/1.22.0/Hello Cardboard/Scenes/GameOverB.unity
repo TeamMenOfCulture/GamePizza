@@ -495,6 +495,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startGameButton: {fileID: 915971946}
   exitButton: {fileID: 1983736276}
+  button1Index: 1
+  button2Index: 0
   materialA: {fileID: 2100000, guid: 686c6705bb8d6a643922841efbdfeea3, type: 2}
   materialB: {fileID: 2100000, guid: 72ab5393607aca94bba39aba3584b85c, type: 2}
   cntdwntxt: {fileID: 835253914}

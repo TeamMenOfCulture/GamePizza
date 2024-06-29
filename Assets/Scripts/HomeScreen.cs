@@ -6,10 +6,13 @@ public class HomeScreen : MonoBehaviour
 {
     public GameObject startGameButton;
     public GameObject exitButton;
+    public int button1Index;
+    public int button2Index;
+
     public Material materialA;
     public Material materialB;
     public TextMesh cntdwntxt; // Use TextMeshPro for 3D text
-
+    
     private Renderer startGameRenderer;
     private Renderer exitRenderer;
     private Coroutine countdownCoroutine;
@@ -46,7 +49,7 @@ public class HomeScreen : MonoBehaviour
 
                 if (countdownCoroutine == null)
                 {
-                    countdownCoroutine = StartCoroutine(CountdownToAction(3, () => SceneManager.LoadScene(1)));
+                    countdownCoroutine = StartCoroutine(CountdownToAction(3, () => SceneManager.LoadScene(button1Index)));
                 }
             }
             else if (hit.collider.CompareTag("Exit"))
@@ -56,7 +59,17 @@ public class HomeScreen : MonoBehaviour
 
                 if (countdownCoroutine == null)
                 {
-                    countdownCoroutine = StartCoroutine(CountdownToAction(3, () => Application.Quit()));
+                    countdownCoroutine = StartCoroutine(CountdownToAction(3, () =>
+                    {
+                        if (SceneManager.GetActiveScene().buildIndex == 0)
+                        {
+                            Application.Quit();
+                        }
+                        else
+                        {
+                            SceneManager.LoadScene(button2Index);
+                        }
+                    }));
                 }
             }
             else

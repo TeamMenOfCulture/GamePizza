@@ -118,6 +118,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7b0066015d16ea40bdda49189c79c04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 4
   crossSectionMaterial: {fileID: 2100000, guid: cf0e99229f1c72944999686244cafba6, type: 2}
   explosionPrefab: {fileID: 2406183867454843911, guid: 8522aacf5a85af043af81a00d18293fa, type: 3}
+  sliceSound: {fileID: 8300000, guid: 65a892d8950262541acbf289bb4135ff, type: 3}
+  blastSound: {fileID: 8300000, guid: 0b63e9c4b4c44434ab28a8885825abed, type: 3}
+  missMaterial: {fileID: 2100000, guid: 6dd0edcd049eb034699745afba8a0780, type: 2}

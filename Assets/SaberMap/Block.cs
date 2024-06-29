@@ -1,5 +1,6 @@
 using UnityEngine;
 using EzySlice;
+using UnityEngine.SceneManagement;
 
 public class Block : MonoBehaviour
 {
@@ -7,9 +8,43 @@ public class Block : MonoBehaviour
     public Material crossSectionMaterial;
     public GameObject explosionPrefab; // Reference to the explosion prefab
 
+    private TextMesh scoreTextMesh;
+    private TextMesh missCountTextMesh;
+    public Material missMaterial; // Material for missed blocks
+
+    private void Start()
+    {
+        // Initialize PlayerPrefs for score and miss count if not already set
+        if (!PlayerPrefs.HasKey("SaberScore"))
+        {
+            PlayerPrefs.SetInt("SaberScore", 0);
+        }
+        if (!PlayerPrefs.HasKey("MissCount"))
+        {
+            PlayerPrefs.SetInt("MissCount", 0);
+        }
+
+        // Get the TextMesh components from the named GameObjects
+        scoreTextMesh = GameObject.Find("ScoreText").GetComponent<TextMesh>();
+        missCountTextMesh = GameObject.Find("HitText").GetComponent<TextMesh>();
+
+        UpdateUI();
+    }
+
     void Update()
     {
         transform.Translate(Vector3.back * speed * Time.deltaTime);
+
+        // Check if the block has moved past the threshold
+        if (transform.position.z < -40f)
+        {
+            DisableBlock();
+        }
+        if (transform.position.z < -40.5f)
+        {
+            MissBlock();
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -44,12 +79,16 @@ public class Block : MonoBehaviour
             AddComponentsToSlice(upperHull);
             AddComponentsToSlice(lowerHull);
 
+            // Update score
+            UpdateScore(5);
+
             Destroy(gameObject);
         }
         else
         {
             Debug.Log("Slicing Failed");
             TriggerExplosion();
+            UpdateScore(1);
             Destroy(gameObject);
         }
     }
@@ -70,18 +109,66 @@ public class Block : MonoBehaviour
     {
         if (explosionPrefab != null)
         {
-            // Instantiate the explosion prefab at the block's position and rotation
             GameObject explosionInstance = Instantiate(explosionPrefab, transform.position, transform.rotation);
 
-            // Play all particle systems within the explosion prefab
             ParticleSystem[] particleSystems = explosionInstance.GetComponentsInChildren<ParticleSystem>();
             foreach (ParticleSystem ps in particleSystems)
             {
                 ps.Play();
             }
 
-            // Destroy the explosion instance after the particles have finished playing
-            Destroy(explosionInstance, 2f); // Adjust the duration based on the lifetime of the particles
+            Destroy(explosionInstance, 2f);
         }
+    }
+
+    private void MissBlock()
+    {
+        int missCount = PlayerPrefs.GetInt("MissCount") + 1;
+        PlayerPrefs.SetInt("MissCount", missCount);
+        Debug.Log("Miss : " + missCount);
+
+        if (missCount >= 5)
+        {
+            Debug.Log("Game Over");
+        }
+
+        UpdateUI();
+    }
+
+    private void UpdateScore(int points)
+    {
+        int currentScore = PlayerPrefs.GetInt("SaberScore") + points;
+        PlayerPrefs.SetInt("SaberScore", currentScore);
+
+        UpdateUI();
+    }
+
+    private void UpdateUI()
+    {
+        if (scoreTextMesh != null)
+        {
+            scoreTextMesh.text = "Score: " + PlayerPrefs.GetInt("SaberScore");
+        }
+
+        if (missCountTextMesh != null)
+        {
+            missCountTextMesh.text = "Miss : " + PlayerPrefs.GetInt("MissCount");
+        }
+    }
+    private void DisableBlock()
+    {
+        BoxCollider boxCollider = GetComponent<BoxCollider>();
+        if (boxCollider != null)
+        {
+            boxCollider.enabled = false;
+        }
+
+        Renderer renderer = GetComponent<Renderer>();
+        if (renderer != null)
+        {
+            renderer.material = missMaterial;
+        }
+
+        Destroy(gameObject, 2f); // Destroy the block after 2 seconds
     }
 }
