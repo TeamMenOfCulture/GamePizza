@@ -1,11 +1,11 @@
-# NexusVR - HellRun and BatSaver
-Welcome to our VR App, NexusVR, featuring two exciting games: HellRun and BatSaver. This app is built using Unity and is designed to provide an immersive experience using affordable VR goggles along with your Android device.
+# NexusVR - HellRun and BadSaber
+Welcome to our VR App, NexusVR, featuring two exciting games: HellRun and BadSaber. This app is built using Unity and is designed to provide an immersive experience using affordable VR goggles along with your Android device.
 
 ## Introduction
 NexusVR offers two thrilling games that take advantage of VR technology to provide an engaging and immersive experience. HellRun is a fast-paced action game set in a fiery underworld, while BadSaver is a game where you need immense reflexes to destroy obstacles.
 
 ## Features
-- Two unique VR games: HellRun and BatSaver
+- Two unique VR games: HellRun and BadSaber
 - Optimized for use with inexpensive VR goggles
 - Compatible with Android devices
 - Intuitive controls and engaging gameplay
@@ -25,7 +25,7 @@ NexusVR offers two thrilling games that take advantage of VR technology to provi
 
 ## Usage
 - Open the VR app on your Android device.
-- Choose between the two games: HellRun or BatSaver.
+- Choose between the two games: HellRun or BadSaber.
 - Insert your device into your VR goggles.
 - Enjoy the game at it's full might.
 
@@ -36,7 +36,7 @@ HellRun is an adrenaline-pumping action game set in a fiery underworld. Navigate
 - Controls: Use your head movements to navigate and avoid obstacles.
 - Objective: Survive as long as possible and achieve a high score.
 
-### BadSaver
+### BadSaber
 BadSaver is a high-intensity game that tests your reflexes as you navigate through challenging environments. Your mission is to destroy obstacles and ensure your survival.
 
 - Controls: Use your head movements to aim and destroy obstacles.
