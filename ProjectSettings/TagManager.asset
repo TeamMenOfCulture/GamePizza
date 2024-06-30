@@ -15,6 +15,7 @@ TagManager:
   - Saber
   - NewScene
   - NewScene1
+  - Zombie
   layers:
   - Default
   - TransparentFX
