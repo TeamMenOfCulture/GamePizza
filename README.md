@@ -18,7 +18,7 @@ NexusVR offers two thrilling games that take advantage of VR technology to provi
 - Sufficient storage space for the app
 
 ## Installation
-1) Download the APK file from the (link)[]
+1) Download the APK file from the [link](https://drive.google.com/file/d/1Bz5k_giBhuBuCrXI-gBFfpc6EEyegsE_/view?usp=sharing)
 2) On your Android device, navigate to the downloaded APK file.
 3) Tap on the APK file to begin the installation process.
 4) Once installed, open the app and insert your device into your VR goggles to start playing.
